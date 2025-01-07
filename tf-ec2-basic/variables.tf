@@ -42,7 +42,7 @@ variable "http_port" {
 variable "my_ip" {
   description = "My IP address"
   type        = string
-  default     = "179.14.7.184/32" # Debes parametrizar TU IP.
+  default     = "xxx.xx.x.xxx/32" # Debes parametrizar TU IP.
 }
 
 # Port allowed for ingress rule

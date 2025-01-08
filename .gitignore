@@ -38,3 +38,10 @@ terraform.rc
 tf-ec2-basic/.terraform/
 tf-ec2-basic/terraform.tfstate
 tf-ec2-basic/terraform.tfstate.backup
+tf-ec2-basic/.terraform.lock.hcl
+
+# tf-az-function-trigger
+tf-az-function-trigger/.terraform/
+tf-az-function-trigger/terraform.tfstate
+tf-az-function-trigger/terraform.tfstate.backup
+tf-az-function-trigger/.terraform.lock.hcl

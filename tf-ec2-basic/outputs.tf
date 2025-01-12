@@ -1,10 +1,12 @@
 # Información de la instancia (VM) EC2
 # Nombre de la instancia creada
-output "my-tflab-ec2-name" {
-  value = aws_instance.my-tflab-ec2.id
+output "my_tflab_ec2_name" {
+  description = "EC2 name instance"
+  value       = aws_instance.my_tflab_ec2.id
 }
 
 # IP pública de la instancia creada
-output "my-tflab-ec2-public-ip" {
-  value = aws_instance.my-tflab-ec2.public_ip
+output "my_tflab_ec2_public_ip" {
+  description = "Public IP"
+  value       = aws_instance.my_tflab_ec2.public_ip
 }

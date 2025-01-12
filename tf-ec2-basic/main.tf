@@ -21,7 +21,7 @@ resource "aws_vpc" "my_tflab_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "my_tflab_vpc"
+    Name = "my-tflab-vpc"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_internet_gateway" "my_tflab_igw" {
   vpc_id = aws_vpc.my_tflab_vpc.id
 
   tags = {
-    Name = "my_tflab_igw"
+    Name = "my-tflab-igw"
   }
 }
 
@@ -43,7 +43,7 @@ resource "aws_subnet" "my_tflab_subnet" {
   depends_on              = [aws_internet_gateway.my_tflab_igw]
 
   tags = {
-    Name = "my_tflab_subnet"
+    Name = "my-tflab-subnet"
   }
 }
 
@@ -54,7 +54,7 @@ resource "aws_security_group" "my_tflab_security_group" {
   vpc_id      = aws_vpc.my_tflab_vpc.id
 
   tags = {
-    Name = "my_tflab_security_group"
+    Name = "my-tflab-security-group"
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls_http" {
   to_port           = var.http_port
 
   tags = {
-    Name = "allow_tls_http"
+    Name = "allow-tls-http"
   }
 }
 
@@ -81,7 +81,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls_ssh" {
   to_port           = var.ssh_port
 
   tags = {
-    Name = "allow_tls_ssh"
+    Name = "allow-tls-ssh"
   }
 }
 
@@ -93,7 +93,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all" {
   ip_protocol       = "-1"
 
   tags = {
-    Name = "allow_all"
+    Name = "allow-all"
   }
 }
 
@@ -109,7 +109,7 @@ resource "aws_network_interface" "my_tflab_network_interface" {
   ]
 
   tags = {
-    Name = "my_tflab_network_interface"
+    Name = "my-tflab-network-interface"
   }
 }
 
@@ -127,7 +127,7 @@ resource "aws_instance" "my_tflab_ec2" {
 
   # Nombre de la instancia
   tags = {
-    Name = "my_tflab_ec2"
+    Name = "my-tflab-ec2"
   }
 }
 
@@ -138,6 +138,6 @@ resource "aws_eip" "my_tflab_eip" {
   associate_with_private_ip = "172.16.10.10"
 
   tags = {
-    Name = "my_tflab_eip"
+    Name = "my-tflab-eip"
   }
 }

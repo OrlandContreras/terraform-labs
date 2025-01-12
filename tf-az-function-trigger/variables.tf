@@ -1,4 +1,3 @@
-
 variable "az_subscription_id" {
   description = "ID Subscription Azure"
   type        = string

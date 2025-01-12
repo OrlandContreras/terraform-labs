@@ -24,7 +24,7 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # Creating a storage account
-resource "azurerm_storage_account" "az-sa" {
+resource "azurerm_storage_account" "az_sa" {
   name                     = "azfunctionappsac"
   resource_group_name      = azurerm_resource_group.rg.name
   location                 = azurerm_resource_group.rg.location
@@ -33,7 +33,7 @@ resource "azurerm_storage_account" "az-sa" {
 }
 
 # Creating service plan
-resource "azurerm_service_plan" "az-sp" {
+resource "azurerm_service_plan" "az_sp" {
   name                = "az-windowsfunctionapp-sp"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -42,7 +42,7 @@ resource "azurerm_service_plan" "az-sp" {
 }
 
 # Creating function app
-resource "azurerm_windows_function_app" "az-function" {
+resource "azurerm_windows_function_app" "az_function" {
   name                       = "az-windowsfunctionapp"
   location                   = azurerm_resource_group.rg.location
   resource_group_name        = azurerm_resource_group.rg.name

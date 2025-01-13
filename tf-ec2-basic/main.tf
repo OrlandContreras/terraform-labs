@@ -16,6 +16,7 @@ provider "aws" {
 }
 
 # Creación de la VPC para el EC2
+# tfsec:ignore:require-vpc-flow-logs-for-all-vpcs
 resource "aws_vpc" "my_tflab_vpc" {
   cidr_block           = var.vpc_ip
   enable_dns_hostnames = true
@@ -39,7 +40,7 @@ resource "aws_subnet" "my_tflab_subnet" {
   vpc_id                  = aws_vpc.my_tflab_vpc.id
   cidr_block              = var.subnet_ip
   availability_zone       = var.subnet_availability_zone
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   depends_on              = [aws_internet_gateway.my_tflab_igw]
 
   tags = {
@@ -118,6 +119,14 @@ resource "aws_network_interface" "my_tflab_network_interface" {
 resource "aws_instance" "my_tflab_ec2" {
   ami           = var.ami_instance
   instance_type = var.instance_type
+
+  metadata_options {
+    http_tokens = "required"
+  }
+
+  root_block_device {
+    encrypted = true
+  }
 
   # network_interface: Describe una interfaz de red de la instancia
   network_interface {

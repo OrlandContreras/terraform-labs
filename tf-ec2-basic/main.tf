@@ -1,3 +1,7 @@
+# NOTA: Si deseas conectarte a la instancia de EC2 creada
+# debes crearle una Key Pair previamente y asociarsela a la instancia
+# para poder conectarte con SSH
+
 terraform {
   required_providers {
     aws = {
@@ -35,6 +39,22 @@ resource "aws_internet_gateway" "my_tflab_igw" {
   }
 }
 
+# Creación tabla de rutas
+resource "aws_route_table" "my_tflab_r" {
+  vpc_id = aws_vpc.my_tflab_vpc.id
+
+  tags = {
+    Name = "my-tflab-route-table"
+  }
+}
+
+# Asociar la Internet Gateway a la tabla de rutas
+resource "aws_route" "my_tflab_route" {
+  route_table_id         = aws_route_table.my_tflab_r.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.my_tflab_igw.id
+}
+
 # Creación de la Subnet para el EC2
 resource "aws_subnet" "my_tflab_subnet" {
   vpc_id                  = aws_vpc.my_tflab_vpc.id
@@ -46,6 +66,12 @@ resource "aws_subnet" "my_tflab_subnet" {
   tags = {
     Name = "my-tflab-subnet"
   }
+}
+
+# Asociar la tabla de rutas a la subred
+resource "aws_route_table_association" "my_tflab_association" {
+  subnet_id      = aws_subnet.my_tflab_subnet.id
+  route_table_id = aws_route_table.my_tflab_r.id
 }
 
 # Creación del Security Group para el EC2
@@ -75,7 +101,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls_http" {
 
 # Creación de la regla SSH
 resource "aws_vpc_security_group_ingress_rule" "allow_tls_ssh" {
-  security_group_id = aws_security_group.my-tflab-security-group.id
+  security_group_id = aws_security_group.my_tflab_security_group.id
   cidr_ipv4         = var.my_ip # Debes parametrizar TU IP en el archivo "variables.tf"
   from_port         = var.ssh_port
   ip_protocol       = "tcp"

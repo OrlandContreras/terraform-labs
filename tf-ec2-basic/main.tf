@@ -2,23 +2,6 @@
 # debes crearle una Key Pair previamente y asociarsela a la instancia
 # para poder conectarte con SSH
 
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws" # Provider oficial mantenido por Hashicorp
-      # version = "~> 5.82" # Cualquier versión en el rango 5.82
-      version = "5.82.2"
-    }
-  }
-
-  required_version = ">= 1.2.0"
-}
-
-# Configuración del proveedor AWS
-provider "aws" {
-  region = var.aws_region
-}
-
 # Creación de la VPC para el EC2
 # tfsec:ignore:require-vpc-flow-logs-for-all-vpcs
 resource "aws_vpc" "my_tflab_vpc" {

@@ -9,7 +9,7 @@ resource "aws_vpc" "my_tflab_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "my-tflab-vpc"
+    environment = local.common_tags.environment
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "my_tflab_igw" {
   vpc_id = aws_vpc.my_tflab_vpc.id
 
   tags = {
-    Name = "my-tflab-igw"
+    environment = local.common_tags.environment
   }
 }
 

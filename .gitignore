@@ -45,3 +45,13 @@ tf-az-function-trigger/.terraform/
 tf-az-function-trigger/terraform.tfstate
 tf-az-function-trigger/terraform.tfstate.backup
 tf-az-function-trigger/.terraform.lock.hcl
+
+
+# tf-ai-basic
+tf-ai-basic/.terraform/
+tf-ai-basic/.terraform.lock.hcl
+tf-ai-basic/terraform.tfstate
+tf-ai-basic/terraform.tfstate.backup
+
+# Macos folders and files
+.DS_Store

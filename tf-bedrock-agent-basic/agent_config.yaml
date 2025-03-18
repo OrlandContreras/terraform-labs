@@ -1,0 +1,14 @@
+# config/agent_config.yaml
+agent_resource_role_arn: "arn:aws:iam::123456789012:role/BedrockAgentRole"
+instruction: >
+  Eres un agente especializado en el sector financiero. Tu tarea es obtener datos de la cartera del cliente,
+  analizar la información y evaluar el riesgo de inversión.
+foundation_model:
+  model_id: "deepseek.r1-v1:0"
+  parameters:
+    temperature: 0.7
+collaboration_mode: "DISABLED"
+description: "Agente financiero para análisis de carteras e inversión"
+tags:
+  Proyecto: "FinancieroBedrock"
+  Entorno: "Desarrollo"
